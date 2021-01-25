@@ -1,0 +1,38 @@
+<RCC>
+    <qresource prefix="/">
+        <file>i/smallWindow.jpeg</file>
+        <file>i/test.png</file>
+        <file>i/learnmore.png</file>
+        <file>i/pig1.png</file>
+        <file>i/play.png</file>
+        <file>i/play2.png</file>
+        <file>i/house.png</file>
+        <file>i/backgroung.jpg</file>
+        <file>i/learnmore2.png</file>
+        <file>i/pig12.png</file>
+        <file>i/pig13.png</file>
+        <file>i/pig14.png</file>
+        <file>i/pig121.png</file>
+        <file>i/pig131.png</file>
+        <file>i/pig141.png</file>
+        <file>i/back.png</file>
+        <file>i/virus.png</file>
+        <file>i/virus2.png</file>
+        <file>i/simu.png</file>
+        <file>i/temp.jpeg</file>
+        <file>i/tmp.jpg</file>
+        <file>i/ii.jpg</file>
+        <file>i/iii.jpeg</file>
+        <file>i/iii.jpg</file>
+        <file>i/backbround.jpg</file>
+        <file>i/pause.png</file>
+        <file>i/pause2.png</file>
+        <file>i/backg.jpeg</file>
+        <file>i/ba.jpeg</file>
+        <file>i/bb.jpeg</file>
+        <file>i/b.jpeg</file>
+        <file>i/a.jpg</file>
+        <file>i/aa.jpeg</file>
+        <file>i/s.jpeg</file>
+    </qresource>
+</RCC>

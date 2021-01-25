@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\mainscene.o
+./release\mybutton.o
+./release\pig.o
+./release\pigsty.o
+./release\pigfarm.o
+./release\qrc_rsc.o
+./release\moc_mainscene.o
+./release\moc_mybutton.o
+./release\moc_pig.o
+./release\moc_pigsty.o
+./release\moc_pigfarm.o
+);

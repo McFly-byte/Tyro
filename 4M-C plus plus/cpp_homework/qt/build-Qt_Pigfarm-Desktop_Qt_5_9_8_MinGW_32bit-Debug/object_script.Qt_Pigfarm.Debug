@@ -1,0 +1,14 @@
+INPUT(
+./debug\main.o
+./debug\mainscene.o
+./debug\mybutton.o
+./debug\pig.o
+./debug\pigsty.o
+./debug\pigfarm.o
+./debug\qrc_rsc.o
+./debug\moc_mainscene.o
+./debug\moc_mybutton.o
+./debug\moc_pig.o
+./debug\moc_pigsty.o
+./debug\moc_pigfarm.o
+);
