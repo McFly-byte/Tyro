@@ -45,6 +45,7 @@ int main()
 			tag = tag->last;
 			tag->next = tmp->next;
 			(tmp->next)->last = tag; 	
+//			cout << tmp->ID << " "; 
 			free( tmp );
 		}
 		tag = tag->next;

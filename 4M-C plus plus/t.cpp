@@ -1,13 +1,12 @@
-#pragma GCC optimize(1)
-#pragma GCC optimize(2)
-#pragma GCC optimize(3,"Ofast","inline")
-#include<bits\stdc++.h>
+#include <iostream>
+#include <stdio.h>
+#include <string.h>
 using namespace std;
-
-int card[6][3]={{0,1,2},{1,0,2},{1,2,0},{2,1,0},{2,0,1},{0,2,1}};
-int n , t;
-int main(){
-    cin >> n >> t;
-    cout << card[n%6][t] << endl;;
+int main()
+{
+    string a;
+    a.resize(100); //需要预先分配空间
+    scanf("%s", &a[0]);
+    printf("%s\n", a.c_str());
     return 0;
 }
