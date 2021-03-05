@@ -1,46 +1,88 @@
-/**
- *    author:  McFly
- *    created: 02.2021 
- *	  describ:     
-**/
-#include <bits/stdc++.h>
-using namespace std; 
-
-#define rep(i,a,b) for(register int i=(a);i<(b);++i)
-#define ret(i,a,b) for(register int i=(a);i<=(b);++i)
-#define PI 3.1415926535897932385
-#define INF 0x3f3f3f3f
-#define EPS 10e-6
-#define qwe system("pause");
-#define all(x) (x).begin(),(x).end()
-#define mp make_pair
-#define pb push_back
-#define it iterator
-typedef long long ll;
-
-struct node{
-	int Index;
-	node * Next;
+#include<bits/stdc++.h>
+using namespace std;
+#define maxn 10005
+#define maxm 500005
+#define INF  1234567890
+inline int read()//可能是在处理负数吧 
+{
+    int x=0,k=1; char c=getchar();
+    while(c<'0'||c>'9'){if(c=='-')k=-1;c=getchar();}
+    while(c>='0'&&c<='9')x=(x<<3)+(x<<1)+(c^48),c=getchar();
+    return x*k;
+}
+struct Edge
+{
+    int u,v,w,next;
+}e[maxm];
+int head[maxn],cnt,n,m,s,vis[maxn],dis[maxn];
+struct node
+{
+    int w,now;
+    inline bool operator <(const node &x)const
+    //重载运算符把最小的元素放在堆顶（大根堆）
+    {
+        return w>x.w;//这里注意符号要为'>'
+    }
 };
-typedef node * Ptr;
-
+priority_queue<node>q;
+//优先队列，其实这里一般使用一个pair，但为了方便理解所以用的结构体
+inline void add(int u,int v,int w)
+{
+    e[++cnt].u=u;
+    //这句话对于此题不需要，但在缩点之类的问题还是有用的
+    e[cnt].v=v;
+    e[cnt].w=w;
+    e[cnt].next=head[u];
+    //存储该点的下一条边
+    head[u]=cnt;
+    //更新目前该点的最后一条边（就是这一条边）
+}
+//链式前向星加边
+void dijkstra()
+{
+    for(int i=1;i<=n;i++)
+    {
+        dis[i]=INF;
+    }
+    dis[s]=0;
+    //赋初值
+    q.push((node){0,s});
+    while(!q.empty())
+    //堆为空即为所有点都更新
+    {
+        node x=q.top();
+        q.pop();
+        int u=x.now;
+        //记录堆顶（堆内最小的边）并将其弹出
+        if(vis[u]) continue; 
+        //没有遍历过才需要遍历
+        vis[u]=1;
+        for(int i=head[u];i;i=e[i].next)
+        //搜索堆顶所有连边
+        {
+            int v=e[i].v;
+            if(dis[v]>dis[u]+e[i].w)
+            {
+            	dis[v]=dis[u]+e[i].w;
+            	//松弛操作
+            	q.push((node){dis[v],v});
+            	//把新遍历到的点加入堆中
+            }
+        }
+    }
+}
 int main()
 {
-	int n,k,v[2];
-	cin >> n >> k;
-	node* p[n+1];
-	for ( int i = 0; i <= n; i++ ) {
-		p[i] = (Ptr)malloc( sizeof( node ) );
-		p[i]->Next = NULL;
-	}
-	while ( k-- ){
-		cin >> v[0] >> v[1];
-		Ptr tag = p[v[1]];
-		while ( tag->Next ) tag = tag->Next;
-		tag->Next = p[v[0]]->Next;
-		p[v[0]]->Next = p[v[1]]->Next;
-	}
-	for ( int i = 1; i <= n; i++ ){
-		
-	}
+    n=read(),m=read(),s=read();
+    for(int i=1,x,y,z;i<=m;i++)
+    {
+        x=read(),y=read(),z=read();
+        add(x,y,z);//把边添加到图？ 
+    }
+    dijkstra();
+    for(int i=1;i<=n;i++)
+    {
+        printf("%d ",dis[i]);
+    }
+    return 0;
 }

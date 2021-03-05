@@ -1,20 +1,26 @@
 /**
  *    author:  McFly
  *    created: 02.2021 
- *	  describ:     
+ *	  describ:  				
 **/
 #include <bits/stdc++.h>
 using namespace std; 
 
 #define rep(i,a,b) for(register int i=(a);i<(b);++i)
 #define ret(i,a,b) for(register int i=(a);i<=(b);++i)
-#define PI 3.1415926535897932385
-#define INF 0x3f3f3f3f
-#define EPS 10e-6
-#define pause system("pause")
 #define all(x) (x).begin(),(x).end()
-#define mp make_pair
+#define INF 0x3f3f3f3f //1061109567
+#define EPS 10e-6
+#define qwe system("pause");
+#define pcsn(x) fixed<<setprecision(x)
 #define pb push_back
 #define it iterator
 typedef long long ll;
+typedef unsigned long long ull;
+
+int main()
+{
+	ios_base::sync_with_stdio(false),cin.tie(0);
+	
+}
 

@@ -6,7 +6,14 @@ using namespace std;
 int ans[100] = {0};
 int s[100] = {0}, t[100] = {0};
 
-string Mult( string a , string b )
+string Mult( string a , string b );
+string Add( string a , string b );
+string Minus( string a , string b );
+string Divide( string a , string b );
+bool isEqual( string a , string b );
+bool frontIsBig( string a , string b );
+
+string Mult( string a , string b ) //可单独拿出去 
 {
 	string ans(256,'0');
 	reverse( a.begin(), a.end() );
