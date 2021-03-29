@@ -12,9 +12,9 @@
 #include <queue>
 using namespace std;
 
-typedef unsigned int uint;
-typedef uint Vertex;
-typedef uint Distance;
+typedef int uint;
+typedef int Vertex;
+typedef int Distance;
 #define MAXN 500005
 #define INF 0x7FFFFFFF
 

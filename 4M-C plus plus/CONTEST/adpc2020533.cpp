@@ -18,35 +18,36 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-struct node{
-	int value;
-	int index;
-	bool operator < ( const node & x ){
-		return value >= x.value;
-	}
-};
+string s;
 
 int main()
 {
 	ios_base::sync_with_stdio(false),cin.tie(0);
-	int n,k;
-	cin >> n >> k;
-	node a[n],b[k];
-	rep( i,0,n ) {
-		cin >> a[i].value;
-		a[i].index = i+1;;
+	ll n,one=0,two=0,ans=0;
+	cin >> n >> s;
+	int len = s.length();
+	rep( i,0,len ){
+		if( one == n ) {
+			ans+=one;
+			continue;
+		}
+		if( one + two*2 == n ){
+			if( s[i] != '2' ){
+				if( two != 0 ){
+					two--;
+					one++;
+				}
+			}
+		}
+		else{
+			if( s[i] == '1' )
+				one++;
+			else{
+				if( one + (two+1)*2 <= n ) two++;
+			}
+		}
+		ans += (one+two);
 	}
-	rep( i,0,k ) {
-		cin >> b[i].value;
-		b[i].index = i+1;
-	}
-	sort( a, a+n );
-	sort( b, b+k );
-	int ans[n];
-	rep( i,0,k ){
-		ans[b[i].index-1] = a[i].index;
-	}
-	rep( i,0,k ) cout << ans[i] << ' ';
-	
-}
+	cout << ans << endl;
+}	
 

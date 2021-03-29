@@ -18,35 +18,31 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-struct node{
-	int value;
-	int index;
-	bool operator < ( const node & x ){
-		return value >= x.value;
-	}
-};
-
 int main()
 {
 	ios_base::sync_with_stdio(false),cin.tie(0);
-	int n,k;
-	cin >> n >> k;
-	node a[n],b[k];
-	rep( i,0,n ) {
-		cin >> a[i].value;
-		a[i].index = i+1;;
-	}
-	rep( i,0,k ) {
-		cin >> b[i].value;
-		b[i].index = i+1;
-	}
-	sort( a, a+n );
-	sort( b, b+k );
-	int ans[n];
-	rep( i,0,k ){
-		ans[b[i].index-1] = a[i].index;
-	}
-	rep( i,0,k ) cout << ans[i] << ' ';
-	
+	int t , n, k, ans,sum;
+	cin >> t;
+	while( t-- ){
+		cin >> n >> k;
+		ans = n>k?n-k+k/2:min(k/2,n);
+		cout << ans << endl;
+		if( n > k ) ret( i,k+1,n ) cout << i << ' ';
+		int x = 1;
+		if( k/2 <= n )
+			while( x <= k/2 ) {
+				cout << k-x << ' ';
+				x++;
+			}	
+		else 
+			ret( i,1,n ) cout << i << ' ';
+		if( ans ) cout << endl;
+//		n>k?ans=k/2+n-k:ans=min(k/2,n);
+//		cout << ans << endl;
+//		ret(i,1,min(k/2,n)) cout << i << ' ';
+//		ret(i,k+1,n) cout << i << ' ';
+//		if( ans )
+//			cout << endl;
+	} 
 }
 

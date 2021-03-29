@@ -1,68 +1,111 @@
-/**
- *    author:  McFly
- *    created: 02.2021 
- *	  describ:  	递推较于搜索，省时费地			
-**/
-#include <bits/stdc++.h>
-using namespace std; 
+#include <iostream>
+#include <vector>
+#include <string.h>
+using namespace std;
 
-#define rep(i,a,b) for(register int i=(a);i<(b);++i)
-#define ret(i,a,b) for(register int i=(a);i<=(b);++i)
-#define all(x) (x).begin(),(x).end()
-#define INF 0x3f3f3f3f //1061109567
-#define qwe system("pause");
-#define pcsn(x) fixed<<setprecision(x)
-#define pb push_back
-#define it iterator
-typedef long long ll;
-typedef unsigned long long ull;
+vector<int> p1;
+vector<int> p2;
+vector<int> p3;
 
-#define MAXN 1005
-#define MOD 100003
-int n,m,s,t;
-int a[MAXN][MAXN];
+int n, m;
+int M[3][55];
+int num[3];
+int b[2] = {0, 0};
+int tm = 0;
 
-//void dfs( int i, int j )
-//{
-////	cout << i << '	' << j << endl;
-//	visited[i][j] = 1;
-//	if( i == n && j == n ){
-//		ans++;
-//		ans %= MOD;
-//		visited[i][j] = 0;
-//		return ;
-//	}
-//	if( i+1 <= n && a[i+1][j]>=0 ) dfs( i+1,j );
-//	if( j+1 <= n && a[i][j+1]>=0 ) dfs( i,j+1 );
-//	visited[i][j] = 0;
-//}
-
-int main()
-{
-	ios_base::sync_with_stdio(false),cin.tie(0);
-	cin >> n >> m;
-	while( m-- ){
-		cin >> s >> t;
-		a[s][t] = -1;
-	} 
-	for ( int i = 1; i <= n; i++ ){
-		for ( int j = 1; j <= n; j++ ){
-			if( a[i][j] < 0 ) continue; 
-			if( i == 1 && j == 1 ) a[i][j] = 1;
-			else if( i == 1 ){ 
-				if( a[i][j-1] >= 0 ) a[i][j] = a[i][j-1];
-			} 
-			else if( j == 1 ) {
-				if( a[i-1][j] >= 0 ) a[i][j] = a[i-1][j];
-			} 
-			else {
-				if( a[i][j-1] >= 0 && a[i-1][j] >= 0 ) a[i][j] = a[i][j-1] + a[i-1][j];
-				else if( a[i][j-1] >= 0 ) a[i][j] = a[i][j-1];
-				else if( a[i-1][j] >= 0 ) a[i][j] = a[i-1][j];
-			}
-			a[i][j] %= MOD; 
-		}
+void input(vector<int> p, int M[]){ //传入数组可能太占空间 
+	int a;
+	for(int i = 0; i < n; i++){
+		cin >> a;
+		p.push_back(a);
+		M[a]++;
 	}
-	cout << a[n][n] << endl;
 }
 
+void deal(int a, int M[], int vmin, int wmin){
+	for(int i = vmin + 1; i <= m; i++){
+		if(M[i] >= wmin){
+			num[a]-= wmin;
+			M[i]-= wmin;
+			b[0] = i;
+			b[1] = wmin;
+			tm = 0;
+			return;
+		}
+	}
+	for(int i = 1; i <= m; i++){
+		if(M[i] > wmin){
+			num[a] -= wmin + 1;
+			M[i]-= wmin + 1;
+			b[0] = i;
+			b[1] = wmin + 1; 
+			tm =0;
+			return;			
+		}
+	}
+	tm++;
+	if(tm == 3){
+		b[0] = 0;
+		b[1] = 0;
+	}
+}
+
+int main (){
+	cin >> n >> m;
+	num[0] = n;
+	num[1] = n;
+	num[2] = n;
+	memset(M, 0, sizeof(M));
+	
+	input(p1, M[0]);
+	input(p2, M[1]);
+	input(p3, M[2]);
+	
+	/*for(int i = 0; i <= 2; i++){
+		for(int j = 1; j <= m; j++){
+			cout <<M[i][j] << " ";
+		}
+		cout << endl;
+	} */
+		
+			
+	
+	int vmin = 0, wmin = 1;
+	
+	int i = 0 ;
+	
+	while(i < 3){
+		//cout <<	vmin <<" "<< wmin << endl;
+		deal(i, M[i], vmin, wmin);	//出牌
+		//cout << "每人剩余排数" << num[0] << " " <<num[1] << " " << num[2] <<endl;
+		 
+		//cout << "输出函数返回值：" << i << " " << b[0] <<" "<< b[1]<< endl;
+		if(b[0] != 0){
+			vmin = b[0];
+			wmin = b[1];
+			
+			if(i == 2)
+	 			i = 0;
+			else
+				i++;			
+		}
+		else{
+			vmin = 0;
+			wmin = 1;
+		}
+		//cout << "输出上一轮出的牌："<<vmin <<" "<< wmin << endl;
+		//cout << "剩余的牌" <<endl; 
+		/*for(int i = 0; i <= 2; i++){
+		for(int j = 1; j <= m; j++){
+			cout <<M[i][j] << " ";
+		}
+		cout << endl;
+	} */
+		if(num[i] == 0){
+			cout << i+1;
+			break;
+		}
+		//j++;
+	}
+	return 0;
+}
