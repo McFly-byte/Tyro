@@ -48,10 +48,14 @@ int main()
 {
 //	ios_base::sync_with_stdio(false),cin.tie(0);
 	InitMap();
-//	BFS();
+	cout << "BFS: ";
+	BFS();
+	cout << "DFS: ";
 	DFS(); 
-//	Prim();
-//	Kruskal();
+	cout << "\nPrim最小生成树边权值和: ";
+	Prim();
+	cout << "Kruskal最小生成树边权值和: ";
+	Kruskal();
 }
 
 void InitMap()
@@ -85,16 +89,11 @@ void DFS()
 	while( !S.empty() )
 	{
 		v = S.top();
-		cout << v << ' ';
 		S.pop();
+		printf("%d ",v);
 		for ( int i = N; i > 0 ; i-- ) 
-		{
-			if( Map[v][i] > 0 && Map[v][i] < INF && !vis[i] )
-			{
-				vis[i] = 1;
-				S.push( i ); 
-			}  
-		}	
+			if( Map[v][i] > 0 && Map[v][i] < INF && !vis[i] ) 
+				S.push( i ), vis[i] = 1;
 	 } 
 }
 
@@ -109,10 +108,10 @@ void BFS()
 	{
 		v = Q.front();
 		Q.pop();
-		printf("%d",v);
-		ret( i,1,N ){
-			if( Map[v][i] && !vis[i] ) Q.push(i),vis[i] = 1;
-		}
+		printf("%d ",v);
+		ret( i,1,N )
+			if( Map[v][i] > 0 && Map[v][i] < INF && !vis[i] ) 
+				Q.push(i),vis[i] = 1;
 	} 
 	cout << endl;
 }
